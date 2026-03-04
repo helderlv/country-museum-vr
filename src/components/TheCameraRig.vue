@@ -11,6 +11,8 @@
     id="camera-rig"
     movement-controls="camera: #head;"
     disable-in-vr="component: movement-controls;"
+    rotation="0 -90 0"
+    position="2 0 0"
   >
 
       <a-entity
@@ -30,17 +32,14 @@
           disable-in-vr="component: raycaster; disableInAR: false;"
           hide-in-vr="hideInAR: false"
         ></a-entity>
-        <a-box
+        <a-entity
           id="dummy-hand-right"
-          obb-collider
-          scale="0.5 0.5 0.5"
-          position="0.3 -0.4 -1"
-        ></a-box>
-        <a-box
+          position="0.3 -0.4 -0.5"
+        ></a-entity>
+        <a-entity
           id="dummy-hand-left"
           position="-0.3 -0.4 -0.5"
-          obb-collider
-        ></a-box>
+        ></a-entity>
       </a-entity>
 
       <a-entity
@@ -52,13 +51,14 @@
           collisionEntities: [data-role='nav-mesh'];
           snapTurn: false;
         "
-        obb-collider
         position="0 1.5 0"
+        physx-grab
       >
         <a-sphere id="hand-left-collider"
           radius="0.02"
           visible="false"
-        ></a-sphere>
+          physx-body="type: kinematic; emitCollisionEvents: true">
+        </a-sphere>
       </a-entity>
 
       <a-entity
@@ -67,12 +67,13 @@
         laser-controls="hand: right"
         raycaster="far: 4; objects: [clickable]; showLine: true;"
         position="0 1.5 0"
-        obb-collider
+        physx-grab
       >
         <a-sphere id="hand-right-collider"
           radius="0.02"
           visible="false"
-        ></a-sphere>
+          physx-body="type: kinematic; emitCollisionEvents: true">
+        </a-sphere>
       </a-entity>
 
   </a-entity>

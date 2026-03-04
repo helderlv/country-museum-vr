@@ -1,7 +1,7 @@
 <p align="center">
     <img src="./logo.svg" alt="VAV Logo" align="center"/>
 </p>
-<h1 align="center">Vue + A-Frame + Vite boilerplate</h1>
+<h1 align="center">Vue + A-Frame + Vite boilerplate </h1>
 
 > A boilerplate for A-Frame, Vue and Vite
 

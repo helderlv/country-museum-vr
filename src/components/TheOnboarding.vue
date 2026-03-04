@@ -19,24 +19,26 @@
 <template>
   <div id="onboarding" v-if="showOnboarding">
     <div>
-      <h1>A-Frame + Vite + Vue Boilerplate</h1>
+      <h1>🗺️ Country Museum</h1>
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
         <section>
-          <h4>Movement modes support</h4>
+          <h4>A propos</h4>
+          <p>
+            Vous êtes dans une salle d'exposition dédiée à un pays secret. Explorez la pièce, observez les objets traditionnels et lisez les indices culturels.
+            Une fois que vous pensez avoir trouvé, localisez ce pays sur le globe terrestre pour valider votre réponse.
+          </p>
+          <h4>Les Contrôles</h4>
           <ul>
             <li>
-              Desktop – Keyboard for move (WASD or Arrows keys) + Mouse for look
-              control (Drag and drop)
+              Ordinateur – Utilisez les touches les flèches (ou AWSD) pour marcher et la souris pour regarder autour de vous. Faites un clic gauche pour interagir, et maintenez le clic droit en bougeant la souris pour faire tourner le globe.
             </li>
             <li>
-              Mobile – 1x Finger touch to go forward + 2x Fingers touch to go
-              backward + Gaze cursor for click
+              Mobile – Touchez l'écran à 1 doigt pour avancer, à 2 doigts pour reculer. Touchez le pointeur sur les objets pour interagir.
             </li>
             <li>
-              VR/AR – walk + Teleport (Grip for grab and laser for
-              click) + Gaze cursor for click
+              VR/AR – Utilisez le joystick gauche pour vous déplacer, la gâchette droite pour interagir, et le joystick droit pour faire tourner le globe.
             </li>
           </ul>
         </section>
