@@ -1,37 +1,47 @@
-<p align="center">
-    <img src="./logo.svg" alt="VAV Logo" align="center"/>
-</p>
-<h1 align="center">Vue + A-Frame + Vite boilerplate </h1>
-
-> A boilerplate for A-Frame, Vue and Vite
+## Starter Template
+This project is built upon the [Vue + A-Frame + Vite boilerplate](https://github.com/Chabloz/a-frame-vite-vue-boilerplate) created by [Chabloz](https://github.com/Chabloz).
 
 ![Vue.js](https://img.shields.io/badge/vuejs-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
 ![A-Frame](https://img.shields.io/badge/A%E2%80%93Frame-brightgreen?style=for-the-badge&labelColor=%23ef2d5e&color=%23ef2d5e)
 ![Threejs](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-### [>> DEMO <<](https://onivers.com/aframe-vue-boilerplate/)
 
-## Included in the boilerplate
+<h1>Country Museum VR</h1>
 
-### Libs and components
+**Country Museum VR** is an interactive journey built for VR. You are transported into a secret cultural exhibition and invited to look around. Take your time to examine the 3D historical artifacts, read the informative plaques, and listen to the audio hints to guess which country is being showcased. Once you piece all the clues together, simply locate the mystery destination on a fully interactive globe to complete your experience.
 
-- [aframe-extras](https://github.com/c-frame/aframe-extras) (MIT License)
-- [aframe physx](https://github.com/c-frame/physx) (MIT License)
-- [aframe-blink-controls](https://github.com/jure/aframe-blink-controls) (MIT License)
-- [aframe-multi-camera](https://github.com/diarmidmackenzie/aframe-multi-camera/) (MIT License)
-- [simple-navmesh-constraint](https://github.com/AdaRoseCannon/aframe-xr-boilerplate) (MIT Licence)
+ ### [>> DEMO <<](https://vr.onivers.com/helder/)
 
-### Movement modes support
 
-- **Desktop** – Keyboard for move (_WASD_ or Arrows keys) + Mouse for look control (Drag and drop)
-- **Mobile** – 1x Finger touch to go forward + 2x Fingers touch to go backward + Gaze cursor for click
-- **VR/AR** – walk + Teleport (Grip for grab and laser for click) + Gaze cursor for click in AR
 
+## Movement modes support
+
+This experience supports multiple devices.
+
+- **Desktop**
+  - **Move:** Use WASD or ZQSD (Arrow keys also supported)
+  - **Look:** Mouse (Click and drag)
+  - **Interact:** Left Click
+  - **Rotate the Globe:** Hold Right Click and drag the mouse
+
+- **VR Headset**
+  - **Move:** Use the left joystick
+  - **Interact:** Use the right trigger
+  - **Rotate the Globe:** Use the right joystick
+
+
+## Assets
 ### 3D models
 
-- **Main room** – [VR Gallery](https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e) by [Maxim Mavrichev](https://sketchfab.com/mvrc.art) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-- **3D physic room** – [3d_gallery_for_vr_projects](https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1) by [tekuto1s](https://sketchfab.com/tekuto1s) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Exhibition Room** (`vr_exhibition_gallery_baked.glb`) – [VR Exhibition Gallery](https://www.fab.com/fr/listings/3922d2eb-efef-49a9-9017-ee510c6260b5) by Christy Hsu Creative is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Interactive Earth** (`earth.glb`) – [Solar Impulse Flight Path](https://sketchfab.com/3d-models/solar-impulse-flight-path-298e1ac1fdb048e892d036d588d4322c) by Solar Impulse is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Display Stand** (`stand_low_poly.glb`) – [Stand Low Poly](https://www.fab.com/fr/listings/0fdf7114-37af-4811-bffd-743d64086f87) by Oobe-Xr-Srl is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Calendar Frame** (`frame_calendar.glb`) – [Picture Frame](https://sketchfab.com/3d-models/picture-frame-5b4f6ab0cd54433c82b429b42f4c9259) by Wyme is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Picture Frame** (`picture_frame_-_emapale_enmarcate.glb`) – [Emapale Enmarcate](https://sketchfab.com/3d-models/picture-frame-emapale-enmarcate-1e2b479db01c4a5d93a79ed94fd08bff) by chayaruart is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Kirar / Traditional Lyre** (`kirar-v1.glb`) – [Kirar](https://sketchfab.com/3d-models/kirar-6f96fc4ee4224729b9e3d37ebb27287e) by Binu Darker is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Jebena / Coffee Pot** (`jebena_model.glb`) – [Jebena Model](https://sketchfab.com/3d-models/jebena-model-5aa1771df2294e9f82c32def2088304a) by Johntesfu is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+- **Interactive Button** (`button.glb`) – [Low Poly Button](https://sketchfab.com/3d-models/low-poly-button-optimized-for-roblox-51456146478740dba6469a4c04435c3c) by Matrix1635 is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ---
 
@@ -42,7 +52,7 @@
 ### Clone (or fork, or download)
 
 ```sh
-git clone https://github.com/Chabloz/a-frame-vite-vue-boilerplate.git .
+git clone https://github.com/helderlv/country-museum-vr.git
 ```
 
 ### Install dependencies
@@ -79,7 +89,3 @@ npm run dev-expose
 > The certificate is self-signed, so you will probably have to confirm access to the resource in your browser.
 
 ---
-
-## License
-
-![MIT License](https://img.shields.io/badge/License-MIT-brightgreen?style=for-the-badge&color=%23262626)
