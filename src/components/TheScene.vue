@@ -45,8 +45,6 @@ function onAssetsLoaded() {
       <a-asset-item id="stand" src="assets/stand_low_poly.glb"></a-asset-item>
       <a-asset-item id="frame_calendar" src="assets/frame_calendar.glb"></a-asset-item>
       <a-asset-item id="frame" src="assets/picture_frame_-_emapale_enmarcate.glb"></a-asset-item>
-      <a-asset-item id="kirar" src="assets/kirar.glb"></a-asset-item>
-      <a-asset-item id="kirar_2" src="assets/kirar_2.glb"></a-asset-item>
       <a-asset-item id="kirar-v1" src="assets/kirar-v1.glb"></a-asset-item>
       <a-asset-item id="jebena" src="assets/jebena_model.glb"></a-asset-item>
       <a-asset-item id="button" src="assets/button.glb"></a-asset-item>
