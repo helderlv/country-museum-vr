@@ -1,5 +1,6 @@
 <script setup>
 import { computed } from 'vue';
+import { wrapText } from '../utils/text.js';
 
 const props = defineProps({
     plateId: { type: String, required: true },
@@ -10,26 +11,9 @@ const props = defineProps({
     text: { type: String, required: true },
 });
 
-// Découpe le texte en lignes de max MAX_CHARS caractères, en coupant aux espaces
-const MAX_CHARS = 55;
-function wrapText(text) {
-    const words = text.trim().replace(/\s+/g, ' ').split(' ').filter(w => w.length > 0);
-    const lines = [];
-    let current = '';
-    for (const word of words) {
-        const candidate = current ? current + ' ' + word : word;
-        if (candidate.length > MAX_CHARS) {
-            if (current) lines.push(current);
-            current = word;
-        } else {
-            current = candidate;
-        }
-    }
-    if (current) lines.push(current);
-    return lines;
-}
-
-const textLines = computed(() => wrapText(props.text));
+// Découpe le texte en lignes de max 53 caractères
+const MAX_CHARS = 53;
+const textLines = computed(() => wrapText(props.text, MAX_CHARS));
 </script>
 
 <template>

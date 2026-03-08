@@ -1,160 +1,340 @@
 <script setup>
-  import { ref } from 'vue';
+import { ref } from 'vue';
 
-  defineProps({
-    loaded: Boolean,
-  });
+defineProps({
+  loaded: Boolean,
+});
 
-  const showOnboarding = ref(true);
+const showOnboarding = ref(true);
 
-  function enterScene() {
-    showOnboarding.value = false;
-    if (AFRAME.utils.device.checkHeadsetConnected() && !AFRAME.utils.device.isMobile()) {
-      document.querySelector('a-scene').enterVR();
-    }
-    document.querySelector('a-scene').emit('enter-scene');
+function enterScene() {
+  showOnboarding.value = false;
+  if (AFRAME.utils.device.checkHeadsetConnected() && !AFRAME.utils.device.isMobile()) {
+    document.querySelector('a-scene').enterVR();
   }
+  document.querySelector('a-scene').emit('enter-scene');
+}
 </script>
 
 <template>
   <div id="onboarding" v-if="showOnboarding">
-    <div>
-      <h1>🗺️ Country Museum</h1>
-      <p v-if="!loaded">loading...</p>
-      <button v-if="loaded" @click="enterScene()">Enter scene</button>
-      <div class="licences">
-        <section>
-          <h4>A propos</h4>
-          <p>
-            Vous êtes dans une salle d'exposition dédiée à un pays secret. Explorez la pièce, observez les objets traditionnels et lisez les indices culturels.
+    <div class="onboarding-container">
+
+      <div class="header">
+        <h1>Country Museum</h1>
+        <hr class="separator" />
+      </div>
+
+      <div v-if="!loaded" class="loading">
+        <div class="spinner"></div>
+        <p>Chargement...</p>
+      </div>
+
+      <div v-if="loaded" class="content">
+
+        <div class="section about">
+          <h2>À propos du musée virtuel</h2>
+          <p class="intro">
+            Vous êtes dans une salle d'exposition dédiée à un pays. Explorez la pièce, observez les objets traditionnels
+            et lisez les indices culturels.
             Une fois que vous pensez avoir trouvé, localisez ce pays sur le globe terrestre pour valider votre réponse.
           </p>
-          <h4>Les Contrôles</h4>
-          <ul>
-            <li>
-              Ordinateur – Utilisez les touches les flèches (ou AWSD) pour marcher et la souris pour regarder autour de vous. Faites un clic gauche pour interagir, et maintenez le clic droit en bougeant la souris pour faire tourner le globe.
-            </li>
-            <li>
-              Mobile – Touchez l'écran à 1 doigt pour avancer, à 2 doigts pour reculer. Touchez le pointeur sur les objets pour interagir.
-            </li>
-            <li>
-              VR/AR – Utilisez le joystick gauche pour vous déplacer, la gâchette droite pour interagir, et le joystick droit pour faire tourner le globe.
-            </li>
-          </ul>
-        </section>
-        <section>
-          <h4>Source code</h4>
-          <blockquote><a href="https://github.com/Chabloz/a-frame-vite-vue-boilerplate">Github repo</a></blockquote>
-        </section>
-        <dl>
-          <dt>
-            <i>Included</i>
-          </dt>
-          <dt>
-            <a href="https://github.com/c-frame/aframe-extras" target="_blank">aframe-extras</a>
-          </dt><dd>
-            <a href="https://github.com/c-frame/aframe-extras/blob/master/LICENSE" target="_blank">MIT License</a>
-          </dd>
+        </div>
 
-          <dt>
-            <a href="https://github.com/c-frame/physx" target="_blank">aframe physx</a>
-          </dt><dd>
-            <a href="https://github.com/c-frame/aframe-extras/blob/master/LICENSE" target="_blank">MIT License</a>
-          </dd>
+        <button class="enter-btn" @click="enterScene()">
+          Entrer dans le musée
+        </button>
 
-          <dt>
-            <a href="https://github.com/jure/aframe-blink-controls/" target="_blank">aframe-blink-controls</a>
-          </dt><dd>
-            <a href="https://github.com/jure/aframe-blink-controls/blob/main/LICENSE" target="_blank">MIT License</a>
-          </dd>
+        <div class="section controls">
+          <h2>Contrôles</h2>
+          <div class="control-row">
+            <div class="control">
+              <span class="label">Ordinateur</span>
+              <span class="desc">Utilisez les touches les flèches (ou AWSD) pour marcher et la souris pour regarder
+                autour de vous. Faites un clic gauche pour interagir, et maintenez le clic droit en bougeant la souris
+                pour faire tourner le globe.</span>
+            </div>
+            <div class="control">
+              <span class="label">VR</span>
+              <span class="desc">Utilisez le joystick gauche pour vous déplacer, la gâchette droite pour interagir, et
+                le joystick droit pour faire tourner le globe.</span>
+            </div>
+          </div>
+        </div>
 
-          <dt>
-            <a href="https://github.com/diarmidmackenzie/aframe-multi-camera/" target="_blank">aframe-multi-camera</a>
-          </dt><dd>
-            <a href="https://github.com/diarmidmackenzie/aframe-multi-camera/blob/main/LICENSE" target="_blank">MIT License</a>
-          </dd>
+        <details class="credits" open>
+          <summary>Crédits</summary>
+          <div class="credits-list">
+            <a href="https://github.com/helderlv/country-museum-vr" target="_blank">Code source - Country Museum VR</a>
+            <a href="https://github.com/Chabloz/a-frame-vite-vue-boilerplate" target="_blank">Boilerplate A-Frame</a>
+            <a href="https://github.com/AdaRoseCannon/aframe-htmlmesh" target="_blank">A-Frame HTMLMesh</a>
+            <span>A-Frame • Vite • Vue</span>
+          </div>
+        </details>
 
-          <dt>
-            <a href=" https://github.com/AdaRoseCannon/aframe-xr-boilerplate" target="_blank">simple-navmesh-constraint</a>
-          </dt><dd>
-            By Ada Rose Cannon under MIT License
-          </dd>
-
-          <dt>
-            <a href="https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e" target="_blank">VR Gallery</a>
-          </dt><dd>
-            by <a href="https://sketchfab.com/mvrc.art" target="_blank">Maxim Mavrichev</a>
-            under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-          </dd>
-
-          <dt>
-            <a href="https://sketchfab.com/3d-models/3d-gallery-for-vr-projects-68f77ed8558c4bd59e0a13e2cc9d1fd1" target="_blank">Physic room model</a>
-          </dt><dd>
-            by <a href="https://sketchfab.com/tekuto1s" target="_blank">tekuto1s</a>
-            under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-          </dd>
-
-        </dl>
       </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  h1 { font-size: 1.5rem }
-  a {
-    color: #eee;
-    text-decoration: none;
-  }
-  .licences {
-    margin: 2rem 0;
-    padding-bottom: 1rem;
-    font-size: 1rem;
-    text-align: left;
-  }
-  .licences dt {
-    padding-top: 0.75rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-  }
-  .licences dd {
-    margin-left: 0;
-    font-size: 0.8rem;
+#onboarding {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, #0a0a0a 0%, #1a1a1a 100%);
+  color: #e8e8e8;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  z-index: 10000;
+  overflow: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.onboarding-container {
+  width: 100%;
+  max-width: 600px;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
 
-  #onboarding {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #333;
-    color: #ccc;
-    width: 100vw;
-    height: 100vh;
-    padding: 1rem;
-    font-family: monospace;
-    z-index: 10000;
-    overflow: auto;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  #onboarding > * {
-    margin: 0 auto;
-    max-width: 50rem;
-    width: calc(100vw - 10rem);
-    text-align: center;
-    border-radius: 0.3rem;
-    padding: 1rem;
-    font-size: 1.3rem;
+}
+
+/* ========== HEADER ========== */
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  margin: 0 0 1rem 0;
+}
+
+.separator {
+  border: none;
+  border-top: 1px solid rgba(201, 168, 76, 0.2);
+  margin: 0 0 1rem 0;
+}
+
+/* ========== LOADING ========== */
+.loading {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(201, 168, 76, 0.2);
+  border-top-color: #c9a84c;
+  border-radius: 50%;
+  margin: 0 auto 1.5rem;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
   }
-  #onboarding button {
-    font-size: 1.3rem;
-    padding: 0.5rem 1rem;
-    border-radius: 0.3rem;
-    background-color: white;
-    color: black;
-    border: none;
-    cursor: pointer;
-  }
-</style>#onboarding li {
-#onboarding li {
-  font-size: 1rem;
+}
+
+.loading p {
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  color: rgba(232, 232, 232, 0.5);
+  margin: 0;
+}
+
+/* ========== CONTENT ========== */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.section {
   text-align: left;
 }
+
+/* ========== ABOUT ========== */
+.about h2 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(232, 232, 232, 0.5);
+  margin: 0 0 1.5rem 0;
+}
+
+.intro {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: rgba(232, 232, 232, 0.8);
+  margin: 0;
+  font-weight: 300;
+  text-align: justify;
+}
+
+/* ========== CONTROLS ========== */
+.controls h2 {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(232, 232, 232, 0.5);
+  margin: 0 0 0 0;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.1);
+  border-bottom: none;
+  padding: 1rem;
+  text-align: center;
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: rgba(201, 168, 76, 0.1);
+  border: 1px solid rgba(201, 168, 76, 0.1);
+}
+
+.control {
+  background: #0a0a0a;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.control .label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #c9a84c;
+  text-align: center;
+}
+
+.control .desc {
+  font-size: 0.7rem;
+  color: rgba(232, 232, 232, 0.5);
+  font-weight: 300;
+  line-height: 1.4;
+  text-align: left;
+}
+
+/* ========== BUTTON ========== */
+.enter-btn {
+  width: 100%;
+  padding: 1.2rem;
+  background: transparent;
+  color: #c9a84c;
+  border: 1px solid #c9a84c;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+
+.enter-btn:hover {
+  background: #c9a84c;
+  color: #0a0a0a;
+  box-shadow: 0 0 30px rgba(201, 168, 76, 0.3);
+}
+
+.enter-btn:active {
+  transform: scale(0.98);
+}
+
+/* ========== CREDITS ========== */
+.credits {
+  text-align: center;
+  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  padding-top: 2rem;
+}
+
+.credits summary {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(232, 232, 232, 0.4);
+  cursor: pointer;
+  list-style: none;
+  transition: color 0.3s ease;
+}
+
+.credits summary:hover {
+  color: rgba(232, 232, 232, 0.7);
+}
+
+.credits summary::-webkit-details-marker {
+  display: none;
+}
+
+.credits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+}
+
+.credits-list a {
+  color: rgba(201, 168, 76, 0.7);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.credits-list a:hover {
+  color: #c9a84c;
+}
+
+.credits-list span {
+  color: rgba(232, 232, 232, 0.3);
+  font-size: 0.75rem;
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  #onboarding {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+    letter-spacing: 0.2em;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .control-row {
+    grid-template-columns: 1fr;
+  }
+
+  .control {
+    padding: 1.2rem;
+  }
+}
+</style>

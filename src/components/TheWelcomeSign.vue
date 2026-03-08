@@ -1,62 +1,12 @@
 <script setup>
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
+import { wrapText } from '../utils/text.js';
+import '../aframe/html-hover-sync.js';
 
-onMounted(() => {
-    const scene = document.querySelector('a-scene');
-    const setup = () => {
-        const btn3d = document.querySelector('#audio-btn-3d');
-        const htmlBtn = document.querySelector('#welcome-audio-btn');
-        if (!btn3d || !htmlBtn) return;
-
-        const getCartelHtmlComp = () => {
-            const cartelEl = document.querySelector('#welcome-cartel-entity');
-            return cartelEl?.components?.html ?? null;
-        };
-
-        const forceUpdate = () => {
-            const comp = getCartelHtmlComp();
-            if (comp) {
-                if (comp.mesh) comp.mesh.material.map.needsUpdate = true;
-                if (typeof comp.update === 'function') comp.update();
-            }
-        };
-
-        btn3d.addEventListener('mouseenter', () => {
-            htmlBtn.style.backgroundColor = '#f0d080';
-            htmlBtn.style.boxShadow = '0 0 0 6px white';
-            forceUpdate();
-        });
-        btn3d.addEventListener('mouseleave', () => {
-            htmlBtn.style.backgroundColor = '#c9a84c';
-            htmlBtn.style.boxShadow = 'none';
-            forceUpdate();
-        });
-    };
-    if (scene && scene.hasLoaded) setup();
-    else document.querySelector('a-scene')?.addEventListener('loaded', setup);
-});
-
-// Réutilisation du même wrapText que InfoPlate
+// Découpe le texte en lignes de max 48 caractères
 const MAX_CHARS = 48;
-function wrapText(text) {
-    const words = text.trim().replace(/\s+/g, ' ').split(' ').filter(w => w.length > 0);
-    const lines = [];
-    let current = '';
-    for (const word of words) {
-        const candidate = current ? current + ' ' + word : word;
-        if (candidate.length > MAX_CHARS) {
-            if (current) lines.push(current);
-            current = word;
-        } else {
-            current = candidate;
-        }
-    }
-    if (current) lines.push(current);
-    return lines;
-}
-
 const cartelText = `"Bienvenue au Musée des Pays" Cette phrase est écrite en amharique, la langue officielle, utilisant l'alphabet Ge'ez.`;
-const textLines = computed(() => wrapText(cartelText));
+const textLines = computed(() => wrapText(cartelText, MAX_CHARS));
 </script>
 
 <template>
@@ -170,15 +120,19 @@ const textLines = computed(() => wrapText(cartelText));
         html="html:#welcome-cartel;cursor:#cursor">
     </a-entity>
 
-    <!-- Bouton 3D invisible pour interaction (outline CSS sur le bouton HTML) -->
+    <!-- Bouton 3D invisible pour interaction (hover et son) -->
     <a-entity
         id="audio-btn-3d"
         position="-1.337 0.63 0.03"
         rotation="-40 90 0"
         geometry="primitive: plane; width: 0.31; height: 0.08"
         material="color: white; shader: flat; transparent: true; opacity: 0"
-        visible ="false"
+        visible="false"
         clickable
         sound="src: #audio-amharique; on: click"
+        html-hover-sync="htmlSelector: #welcome-audio-btn; 
+                        cartelSelector: #welcome-cartel-entity;
+                        hoverStyles: backgroundColor:#f0d080,boxShadow:0 0 0 6px white;
+                        normalStyles: backgroundColor:#c9a84c,boxShadow:none"
     ></a-entity>
 </template>
